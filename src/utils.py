@@ -31,16 +31,16 @@ def convert_json(categories: list) -> list:
     return list_of_categories
 
 
-# # Проверка
+# Проверка
 # categories_in_list = load_json(path_name)
 #
-# # на изменение цены
-# for obj in convert_json(categories_in_list):
-#     for prod in obj.products:
-#         print(prod.price)
-#         user_price = float(input())
-#         prod.price = user_price
-#     print(obj)
+# # # на изменение цены
+# # for obj in convert_json(categories_in_list):
+# #     for prod in obj.products:
+# #         print(prod.price)
+# #         user_price = float(input())
+# #         prod.price = user_price
+# #     print(obj)
 #
 # # на добавление нового объекта товара
 # for obj in convert_json(categories_in_list):
@@ -49,9 +49,9 @@ def convert_json(categories: list) -> list:
 #     if obj.name == name_cat:
 #         for prod in obj.products:
 #             if name == prod.name:
-#                 prod.new_product(name, description, price, quantity)
+#                 classes.Product.new_product(prod, name, description, price, quantity)
 #                 flag = True
 #                 break
 #         if not flag:
-#             obj.products.append(classes.Product(name, description, price, quantity))
+#             obj.products(classes.Product(name, description, price, quantity))
 #     print(obj)
