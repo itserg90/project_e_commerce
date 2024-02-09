@@ -41,19 +41,31 @@ def test_goods(category_phones):
     assert category_phones.goods == ['Iphone 15, 210000 руб. Остаток: 8 шт.']
 
 
-def test_new_product(category_phones, product_phones):
+def test_new_product(product_phones):
     current_category = classes.Category("Смартфоны",
                                         "Iphones",
                                         [classes.Product("Iphone 15",
                                                          "512GB",
                                                          210_000.0,
                                                          8)])
-    current_category.products[0].new_product(product_phones.name,
-                                             product_phones.description,
-                                             product_phones.price,
-                                             product_phones.quantity)
+    classes.Product.new_product(current_category.products[0],
+                                product_phones.name,
+                                product_phones.description,
+                                product_phones.price,
+                                product_phones.quantity)
     assert current_category.products[0].quantity == 16
     assert current_category.products[0].price == 215_000.0
+
+
+def test_products(product_phones):
+    current_category = classes.Category("Смартфоны",
+                                        "Iphones",
+                                        [classes.Product("Iphone 14",
+                                                         "512GB",
+                                                         210_000.0,
+                                                         8)])
+    current_category.add_products(product_phones)
+    assert current_category.products[1].name == "Iphone 15"
 
 
 def test_price():

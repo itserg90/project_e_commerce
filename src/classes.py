@@ -27,6 +27,9 @@ class Category:
     def products(self):
         return self.__products
 
+    def add_products(self, product):
+        self.products.append(product)
+
     def __repr__(self):
         return f"Category({self.name}; {self.description}; {self.products})"
 
@@ -41,17 +44,18 @@ class Product:
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
-        self.__price = float(price)
-        self.quantity = int(quantity)
+        self.__price = price
+        self.quantity = quantity
 
-    def new_product(self, name, description, price, quantity):
+    @classmethod
+    def new_product(cls, product, name, description, price, quantity):
         """Возвращает новый объект товара и проверяет совпадение нового объекта товара с текущим"""
-        current_object = Product(name, description, price, quantity)
+        current_object = cls(name, description, price, quantity)
 
-        if self.name == current_object.name:
-            self.quantity += current_object.quantity
-            if current_object.price > self.price:
-                self.price = current_object.price
+        if product.name == current_object.name:
+            product.quantity += current_object.quantity
+            if current_object.price > product.price:
+                product.price = current_object.price
         return current_object
 
     @property
