@@ -48,7 +48,7 @@ def test_new_product(product_phones):
                                                          "512GB",
                                                          210_000.0,
                                                          8)])
-    classes.Product.new_product(current_category.products[0],
+    classes.Product.new_product(current_category.products,
                                 product_phones.name,
                                 product_phones.description,
                                 product_phones.price,
