@@ -33,11 +33,18 @@ def convert_json(categories: list) -> list:
 
 # Проверка
 # categories_in_list = load_json(path_name)
-
-# # на изменение цены
-# for obj in convert_json(categories_in_list):
-#     for prod in obj.products:
-#         print(prod.price)
-#         user_price = float(input())
-#         prod.price = user_price
-#     print(obj)
+#
+# # # на изменение цены
+# # for obj in convert_json(categories_in_list):
+# #     for prod in obj.products:
+# #         print(prod.price)
+# #         user_price = float(input())
+# #         prod.price = user_price
+# #     print(obj)
+# for obj in categories_in_list:
+#     current_obj = classes.Category(obj["name"], obj["description"], obj["products"])
+#     print(current_obj)
+# for obj in categories_in_list:
+#     print(obj["name"])
+#     for pr in classes.IterationProducts(obj):
+#         print(pr)

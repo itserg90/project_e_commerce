@@ -13,3 +13,10 @@ def category_phones():
 @pytest.fixture()
 def product_phones():
     return classes.Product("Iphone 15", "512GB, Gray space", 215_000.0, 8)
+
+
+@pytest.fixture()
+def dict_category_phones():
+    return {"name": "Смартфоны",
+            "description": "Phones",
+            "products": [classes.Product("Iphone 15", "512GB, Gray space", 210_000.0, 8)]}

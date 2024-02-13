@@ -1,7 +1,6 @@
 class Category:
     """Класс категории товаров"""
     number_of_categories = 0
-    number_of_products = 0
 
     name: str
     description: str
@@ -13,8 +12,6 @@ class Category:
         self.__products = products
 
         Category.number_of_categories += 1
-        number = len(set(product.name for product in self.__products))
-        self.number_of_products += number
 
     @property
     def goods(self):
@@ -30,8 +27,14 @@ class Category:
     def add_products(self, product):
         self.__products.append(product)
 
+    def __len__(self):
+        return len(self.__products)
+
     def __repr__(self):
         return f"Category({self.name}; {self.description}; {self.products})"
+
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {len(self)} шт."
 
 
 class Product:
@@ -81,5 +84,27 @@ class Product:
                 else:
                     print("Пожалуйста, введите корректный ответ: y или n(y-да, n-нет)")
 
+    def __add__(self, other):
+        return self.price * self.quantity + other.price * other.quantity
+
     def __repr__(self):
         return f"Product({self.name}; {self.description}; {self.price}; {self.quantity})"
+
+    def __str__(self):
+        return f"{self.__class__.__name__}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+
+class IterationProducts:
+    def __init__(self, category):
+        self.category = category["products"]
+
+    def __iter__(self):
+        self.current_value = -1
+        return self
+
+    def __next__(self):
+        if self.current_value + 1 < len(self.category):
+            self.current_value += 1
+            return self.category[self.current_value]
+        else:
+            raise StopIteration
