@@ -19,8 +19,8 @@ def test_number_of_categories(category_phones):
     assert category_phones.number_of_categories == 2
 
 
-def test_number_of_products(category_phones):
-    assert category_phones.number_of_products == 1
+def test_len_of_products_in_category(category_phones):
+    assert len(category_phones) == 1
 
 
 def test_load_json():
@@ -37,7 +37,7 @@ def test_convert_json():
     assert utils.convert_json(current_category)[0].name == "Смартфоны"
 
 
-def test_goods(category_phones):
+def test_goods_in_category(category_phones):
     assert category_phones.goods == ['Iphone 15, 210000 руб. Остаток: 8 шт.']
 
 
@@ -57,7 +57,7 @@ def test_new_product(product_phones):
     assert current_category.products[0].price == 215_000.0
 
 
-def test_products(product_phones):
+def test_products_in_category(product_phones):
     current_category = classes.Category("Смартфоны",
                                         "Iphones",
                                         [classes.Product("Iphone 14",
@@ -68,7 +68,7 @@ def test_products(product_phones):
     assert current_category.products[1].name == "Iphone 15"
 
 
-def test_price():
+def test_price_in_product():
     current_category = classes.Category("Смартфоны",
                                         "Iphones",
                                         [classes.Product("Iphone 15",
@@ -77,3 +77,15 @@ def test_price():
                                                          8)])
     current_category.products[0].price = 215_000.0
     assert current_category.products[0].price == 215_000.0
+
+
+def test_add_in_product(product_phones):
+    total = product_phones + product_phones
+    assert total == 3_440_000.0
+
+
+def test_iteration_products_in_category(dict_category_phones):
+    list_of_product = []
+    for product in classes.IterationProducts(dict_category_phones):
+        list_of_product.append(product)
+    assert len(list_of_product) == 1
