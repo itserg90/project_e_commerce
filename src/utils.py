@@ -1,4 +1,5 @@
 import requests
+import tests.test_classes
 
 from src import classes
 
@@ -21,7 +22,8 @@ def convert_json(categories: list) -> list:
             object_product = classes.Product(product["name"],
                                              product["description"],
                                              product["price"],
-                                             product["quantity"])
+                                             product["quantity"],
+                                             product["color"])
             list_of_products.append(object_product)
         object_category = classes.Category(category["name"],
                                            category["description"],
