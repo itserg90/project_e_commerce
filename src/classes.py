@@ -25,7 +25,8 @@ class Category:
         return self.__products
 
     def add_products(self, product):
-        self.__products.append(product)
+        if isinstance(product, Product):
+            self.__products.append(product)
 
     def __len__(self):
         return len(self.__products)
@@ -43,17 +44,19 @@ class Product:
     description: str
     price: float
     quantity: int
+    color: str
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name, description, price, quantity, color):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        self.color = color
 
     @classmethod
-    def new_product(cls, list_products, name, description, price, quantity):
+    def new_product(cls, list_products, name, description, price, quantity, color):
         """Возвращает новый объект товара и проверяет совпадение нового объекта товара с текущим"""
-        new_object = cls(name, description, price, quantity)
+        new_object = cls(name, description, price, quantity, color)
 
         for product in list_products:
             if product.name == new_object.name:
@@ -85,13 +88,30 @@ class Product:
                     print("Пожалуйста, введите корректный ответ: y или n(y-да, n-нет)")
 
     def __add__(self, other):
-        return self.price * self.quantity + other.price * other.quantity
+        if isinstance(other, self.__class__):
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError
 
     def __repr__(self):
         return f"Product({self.name}; {self.description}; {self.price}; {self.quantity})"
 
     def __str__(self):
         return f"{self.__class__.__name__}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+
+class Smartphone(Product):
+    def __init__(self, name, description, price, quantity, color, performance, model, memory):
+        super().__init__(name, description, price, quantity, color)
+        self.performance = performance
+        self.model = model
+        self.memory = memory
+
+
+class LawnGrass(Product):
+    def __init__(self, name, description, price, quantity, color, country, germination_period):
+        super().__init__(name, description, price, quantity, color)
+        self.country = country
+        self.germination_period = germination_period
 
 
 class IterationProducts:
