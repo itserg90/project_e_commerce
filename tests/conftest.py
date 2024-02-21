@@ -1,30 +1,31 @@
 import pytest
 
-from src import classes
+from src.class_category_and_iter import Category
+from src.class_product_and_descendants import Product, Smartphone, LawnGrass
 
 
 @pytest.fixture()
 def category_phones():
-    return classes.Category("Смартфоны",
-                            "Phones",
-                            [classes.Product("Iphone 15", "512GB, Gray space", 210_000.0, 8, "white")])
+    return Category("Смартфоны",
+                    "Phones",
+                    [Product("Iphone 15", "512GB, Gray space", 210_000.0, 8, "white")])
 
 
 @pytest.fixture()
 def product_phones_iphone14():
-    return classes.Product("Iphone 14", "512GB, Gray space", 215_000.0, 8, "white")
+    return Product("Iphone 14", "512GB, Gray space", 215_000.0, 8, "white")
 
 
 @pytest.fixture()
 def product_phones_iphone15():
-    return classes.Product("Iphone 15", "512GB, Gray space", 215_000.0, 8, "white")
+    return Product("Iphone 15", "512GB, Gray space", 215_000.0, 8, "white")
 
 
 @pytest.fixture()
 def dict_category_phones():
     return {"name": "Смартфоны",
             "description": "Phones",
-            "products": [classes.Product("Iphone 15", "512GB, Gray space", 210_000.0, 8, "white")]}
+            "products": [Product("Iphone 15", "512GB, Gray space", 210_000.0, 8, "white")]}
 
 
 @pytest.fixture()
@@ -40,9 +41,9 @@ def dict_category_and_products():
 
 @pytest.fixture()
 def product_class_smartphone():
-    return classes.Smartphone("Iphone 15", "512GB, Gray space", 215_000.0, 8, "white", "8GB", "15", "512GB")
+    return Smartphone("Iphone 15", "512GB, Gray space", 215_000.0, 8, "white", "8GB", "15", "512GB")
 
 
 @pytest.fixture()
 def product_class_lawn_grass():
-    return classes.LawnGrass("Lawn", "Lawn Grass", 100_000, 8, "green", "Russia", "2 weeks")
+    return LawnGrass("Lawn", "Lawn Grass", 100_000, 8, "green", "Russia", "2 weeks")

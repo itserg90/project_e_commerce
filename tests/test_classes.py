@@ -1,5 +1,6 @@
 from src import utils
-from src import classes
+from src.class_category_and_iter import IterationProducts
+from src.class_product_and_descendants import Product
 
 
 def test_init_category(category_phones):
@@ -37,12 +38,12 @@ def test_goods_in_category(category_phones):
 
 
 def test_new_product(category_phones, product_phones_iphone15):
-    classes.Product.new_product(category_phones.products,
-                                product_phones_iphone15.name,
-                                product_phones_iphone15.description,
-                                product_phones_iphone15.price,
-                                product_phones_iphone15.quantity,
-                                product_phones_iphone15.color)
+    Product.new_product(category_phones.products,
+                        product_phones_iphone15.name,
+                        product_phones_iphone15.description,
+                        product_phones_iphone15.price,
+                        product_phones_iphone15.quantity,
+                        product_phones_iphone15.color)
     assert category_phones.products[0].quantity == 16
     assert category_phones.products[0].price == 215_000.0
 
@@ -51,7 +52,6 @@ def test_products_in_category(category_phones, product_phones_iphone14):
     category_phones.add_products(product_phones_iphone14)
     assert category_phones.products[1].name == "Iphone 14"
     assert len(category_phones.products) == 2
-    number_of_products = len(category_phones.products)
     category_phones.add_products(1)
     assert len(category_phones.products) == 2
 
@@ -61,18 +61,31 @@ def test_price_in_product(category_phones):
     assert category_phones.products[0].price == 215_000.0
 
 
-def test_add_in_product(product_phones_iphone15):
+def test_add_in_product(product_phones_iphone15, product_class_smartphone, product_class_lawn_grass):
     total = product_phones_iphone15 + product_phones_iphone15
     assert total == 3_440_000.0
     try:
         product_phones_iphone15 + 1
     except TypeError as error:
         assert error
+    try:
+        product_class_smartphone + product_class_lawn_grass
+    except TypeError as error:
+        assert error
+    try:
+        product_phones_iphone15 + product_class_lawn_grass
+    except TypeError as error:
+        assert error
+    try:
+        product_class_smartphone + product_phones_iphone15
+    except TypeError as error:
+        assert error
+
 
 
 def test_iteration_products_in_category(dict_category_phones):
     list_of_product = []
-    for product in classes.IterationProducts(dict_category_phones):
+    for product in IterationProducts(dict_category_phones):
         list_of_product.append(product)
     assert len(list_of_product) == 1
 
@@ -85,4 +98,3 @@ def test_product_class_smartphone(product_class_smartphone):
 def test_product_class_lawn_grass(product_class_lawn_grass):
     assert product_class_lawn_grass.name == "Lawn"
     assert product_class_lawn_grass.color == "green"
-
