@@ -82,7 +82,6 @@ def test_add_in_product(product_phones_iphone15, product_class_smartphone, produ
         assert error
 
 
-
 def test_iteration_products_in_category(dict_category_phones):
     list_of_product = []
     for product in IterationProducts(dict_category_phones):
