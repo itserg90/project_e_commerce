@@ -43,7 +43,7 @@ class Product:
                     print("Пожалуйста, введите корректный ответ: y или n(y-да, n-нет)")
 
     def __add__(self, other):
-        if isinstance(other, self.__class__):
+        if isinstance(type(other), self.__class__):
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError
 
