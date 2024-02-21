@@ -1,7 +1,7 @@
 import requests
-import tests.test_classes
 
-from src import classes
+from src.class_category_and_iter import Category
+from src.class_product_and_descendants import Product
 
 # JSON в облачном хранилище
 path_name = "https://www.jsonkeeper.com/b/F7TP"
@@ -19,19 +19,18 @@ def convert_json(categories: list) -> list:
     for category in categories:
         list_of_products = []
         for product in category["products"]:
-            object_product = classes.Product(product["name"],
-                                             product["description"],
-                                             product["price"],
-                                             product["quantity"],
-                                             product["color"])
+            object_product = Product(product["name"],
+                                     product["description"],
+                                     product["price"],
+                                     product["quantity"],
+                                     product["color"])
             list_of_products.append(object_product)
-        object_category = classes.Category(category["name"],
-                                           category["description"],
-                                           list_of_products)
+        object_category = Category(category["name"],
+                                   category["description"],
+                                   list_of_products)
         list_of_categories.append(object_category)
 
     return list_of_categories
-
 
 # Проверка
 # categories_in_list = load_json(path_name)
