@@ -1,6 +1,6 @@
 from src import utils
 from src.class_category_and_iter import IterationProducts
-from src.class_product_and_descendants import Product
+from src.class_product_and_descendants import Product, Smartphone
 
 
 def test_init_category(category_phones):
@@ -37,15 +37,33 @@ def test_goods_in_category(category_phones):
     assert category_phones.goods == ['Iphone 15, 210000 руб. Остаток: 8 шт.']
 
 
-def test_new_product(category_phones, product_phones_iphone15):
-    Product.new_product(category_phones.products,
-                        product_phones_iphone15.name,
-                        product_phones_iphone15.description,
-                        product_phones_iphone15.price,
-                        product_phones_iphone15.quantity,
-                        product_phones_iphone15.color)
+def test_new_product(product_phones_iphone15, product_class_smartphone):
+    new_product_product = Product.new_product(product_phones_iphone15.name,
+                                              product_phones_iphone15.description,
+                                              product_phones_iphone15.price,
+                                              product_phones_iphone15.quantity,
+                                              product_phones_iphone15.color)
+    assert new_product_product.name == "Iphone 15"
+
+    new_product_smartphone = Smartphone.new_product(product_class_smartphone.name,
+                                                    product_class_smartphone.description,
+                                                    product_class_smartphone.price,
+                                                    product_class_smartphone.quantity,
+                                                    product_class_smartphone.color,
+                                                    product_class_smartphone.performance,
+                                                    product_class_smartphone.model,
+                                                    product_class_smartphone.memory)
+    assert new_product_smartphone.model == "15"
+
+
+def test_check_new_product(category_phones, product_phones_iphone15, category_lawn_grass, product_class_lawn_grass):
+    product_phones_iphone15.check_new_product(category_phones.products)
     assert category_phones.products[0].quantity == 16
     assert category_phones.products[0].price == 215_000.0
+
+    product_class_lawn_grass.check_new_product(category_lawn_grass.products)
+    assert category_lawn_grass.products[0].quantity == 16
+    assert category_lawn_grass.products[0].price == 100_000.0
 
 
 def test_products_in_category(category_phones, product_phones_iphone14):

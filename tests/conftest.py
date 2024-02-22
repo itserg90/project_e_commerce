@@ -45,5 +45,12 @@ def product_class_smartphone():
 
 
 @pytest.fixture()
+def category_lawn_grass():
+    return Category("Lawns",
+                    "All types",
+                    [LawnGrass("Lawn", "Lawn Grass", 90_000, 8, "green", "Russia", "2 weeks")])
+
+
+@pytest.fixture()
 def product_class_lawn_grass():
     return LawnGrass("Lawn", "Lawn Grass", 100_000, 8, "green", "Russia", "2 weeks")
