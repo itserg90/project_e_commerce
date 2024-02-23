@@ -13,7 +13,7 @@ def load_json(filename: str) -> list:
 
 
 def convert_json(categories: list) -> list:
-    """Возвращает список обьектов классов Category"""
+    """Возвращает список обьектов классов Category и Product"""
 
     list_of_categories = []
     for category in categories:

@@ -69,3 +69,19 @@ class Order(AbstractCategory):
 
     def __len__(self):
         return len(self.products)
+
+
+class IterationProducts:
+    def __init__(self, category):
+        self.category = category["products"]
+
+    def __iter__(self):
+        self.current_value = -1
+        return self
+
+    def __next__(self):
+        if self.current_value + 1 < len(self.category):
+            self.current_value += 1
+            return self.category[self.current_value]
+        else:
+            raise StopIteration
