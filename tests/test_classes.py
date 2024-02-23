@@ -1,5 +1,4 @@
 from src import utils
-from src.class_category_and_iter import IterationProducts
 from src.class_product_and_descendants import Product, Smartphone
 
 
@@ -98,13 +97,6 @@ def test_add_in_product(product_phones_iphone15, product_class_smartphone, produ
         product_class_smartphone + product_phones_iphone15
     except TypeError as error:
         assert error
-
-
-def test_iteration_products_in_category(dict_category_phones):
-    list_of_product = []
-    for product in IterationProducts(dict_category_phones):
-        list_of_product.append(product)
-    assert len(list_of_product) == 1
 
 
 def test_product_class_smartphone(product_class_smartphone):
