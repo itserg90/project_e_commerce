@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 from src.mixins import MixinRepr
 
 
@@ -44,7 +45,6 @@ class Product(MixinRepr, AbstractProduct):
         self.__price = price
         self.quantity = quantity
         self.color = color
-        super().__init__()
 
     @classmethod
     def new_product(cls, *args):
