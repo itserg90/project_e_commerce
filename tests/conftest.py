@@ -1,6 +1,6 @@
 import pytest
 
-from src.class_category_and_iter import Category
+from src.class_category_and_iter import Category, Order
 from src.class_product_and_descendants import Product, Smartphone, LawnGrass
 
 
@@ -54,3 +54,8 @@ def category_lawn_grass():
 @pytest.fixture()
 def product_class_lawn_grass():
     return LawnGrass("Lawn", "Lawn Grass", 100_000, 8, "green", "Russia", "2 weeks")
+
+
+@pytest.fixture()
+def order1():
+    return Order("Iphone15", 200_000, 1)
