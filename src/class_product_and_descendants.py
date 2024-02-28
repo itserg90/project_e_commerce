@@ -82,7 +82,7 @@ class Product(MixinRepr, AbstractProduct):
                     print("Пожалуйста, введите корректный ответ: y или n(y-да, n-нет)")
 
     def __add__(self, other):
-        if isinstance(other, self.__class__):
+        if other.__class__.__name__ == self.__class__.__name__:
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError
 
