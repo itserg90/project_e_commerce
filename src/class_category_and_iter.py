@@ -39,22 +39,11 @@ class Category(AbstractCategory):
     def products(self):
         return self.__products
 
-    @staticmethod
-    def check_product(product):
-        if not product.quantity:
-            raise MyExceptionZeroQuantity()
-
     def add_products(self, product):
         if isinstance(product, Product):
-            try:
-                self.check_product(product)
-                self.__products.append(product)
-            except MyExceptionZeroQuantity as error:
-                print(error)
-            else:
-                print("Товар успешно добавлен")
-            finally:
-                print("Обработка добавления товара завершена")
+            if not product.quantity:
+                raise MyExceptionZeroQuantity
+            self.__products.append(product)
 
     def calculate_the_average_price(self):
         total = sum(product.price for product in self.products)
@@ -83,24 +72,13 @@ class Order(AbstractCategory):
 
         self.products = []
 
-    @staticmethod
-    def check_product(product):
-        if product.quantity == 0:
-            raise MyExceptionZeroQuantity()
-
     def add_products(self, product):
         if not self.name == product.name:
-            try:
-                self.check_product(product)
-                self.price += product.price
-                self.quantity += product.quantity
-                self.products.append(product)
-            except MyExceptionZeroQuantity as error:
-                print(error)
-            else:
-                print("Товар успешно добавлен")
-            finally:
-                print("Обработка добавления товара завершена")
+            if product.quantity == 0:
+                raise MyExceptionZeroQuantity()
+            self.price += product.price
+            self.quantity += product.quantity
+            self.products.append(product)
 
     def __len__(self):
         return len(self.products)
@@ -128,5 +106,20 @@ class IterationProducts:
 #                          [Product("sm1", "ssmm1", 100, 2, "white")])
 #     order1 = Order("Iphone16", 300_000, 2)
 #
-#     category1.add_products(Product("sm1", "ssmm1", 100, 1, "white"))
-#     order1.add_products(Product("sm1", "ssmm1", 100, 0, "white"))
+#     try:
+#         category1.add_products(Product("sm1", "ssmm1", 100, 1, "white"))
+#     except MyExceptionZeroQuantity as error:
+#         print(error)
+#     else:
+#         print("Товар успешно добавлен")
+#     finally:
+#         print("Обработка добавления товара завершена")
+#
+#     try:
+#         order1.add_products(Product("sm1", "ssmm1", 100, 0, "white"))
+#     except MyExceptionZeroQuantity as error:
+#         print(error)
+#     else:
+#         print("Товар успешно добавлен")
+#     finally:
+#         print("Обработка добавления товара завершена")

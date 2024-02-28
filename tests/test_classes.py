@@ -77,6 +77,14 @@ def test_add_products_in_category(category_phones, product_phones_iphone14):
     assert len(category_phones.products) == 2
 
 
+def test_add_products_in_category_with_raises(category_phones, order1, product_phones_iphone15):
+    product_phones_iphone15.quantity = 0
+    with pytest.raises(MyExceptionZeroQuantity):
+        category_phones.add_products(product_phones_iphone15)
+    with pytest.raises(MyExceptionZeroQuantity):
+        order1.add_products(product_phones_iphone15)
+
+
 def test_price_in_product(category_phones):
     category_phones.products[0].price = 215_000.0
     assert category_phones.products[0].price == 215_000.0
