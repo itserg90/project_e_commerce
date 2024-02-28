@@ -115,9 +115,14 @@ def test_add_in_lawn_grass_product(product_phones_iphone15, product_class_lawn_g
         product_class_lawn_grass.__add__(product_phones_iphone15)
 
 
-def test_add_in_product_zero(product_phones_iphone15):
+def test_add_in_product_lawn_grass(product_phones_iphone15, product_class_lawn_grass):
     with pytest.raises(TypeError):
-        product_phones_iphone15.__add__(0)
+        product_phones_iphone15.__add__(product_class_lawn_grass)
+
+
+def test_add_in_product_smartphone(product_phones_iphone15, product_class_smartphone):
+    with pytest.raises(TypeError):
+        product_phones_iphone15.__add__(product_class_smartphone)
 
 
 def test_iteration_products_in_category(dict_category_phones):
