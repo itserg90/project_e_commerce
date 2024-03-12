@@ -94,16 +94,16 @@ class Smartphone(Product):
     """Класс товара"""
     def __init__(self, name: str, description: str, price: float, quantity: int,
                  color: str, performance: str, model: str, memory: str):
-        super().__init__(name, description, price, quantity, color)
         self.performance = performance
         self.model = model
         self.memory = memory
+        super().__init__(name, description, price, quantity, color)
 
 
 class LawnGrass(Product):
     """Класс товара"""
     def __init__(self, name: str, description: str, price: float, quantity: int,
                  color: str, country: str, germination_period: str):
-        super().__init__(name, description, price, quantity, color)
         self.country = country
         self.germination_period = germination_period
+        super().__init__(name, description, price, quantity, color)
