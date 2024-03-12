@@ -1,15 +1,61 @@
 import pytest
 
-from src import classes
+from src.class_category_and_iter import Category, Order
+from src.class_product_and_descendants import Product, Smartphone, LawnGrass
 
 
 @pytest.fixture()
 def category_phones():
-    return classes.Category("Phones",
-                            "Phones are smart",
-                            [classes.Product("Samsung", "Samsung Galaxy C23 Ultra", 50000.0, 2)])
+    return Category("Смартфоны",
+                    "Phones",
+                    [Product("Iphone 15", "512GB, Gray space", 210_000.0, 8, "white")])
 
 
 @pytest.fixture()
-def product_phones():
-    return classes.Product("Samsung", "Samsung Galaxy C23 Ultra", 50000.0, 2)
+def product_phones_iphone14():
+    return Product("Iphone 14", "512GB, Gray space", 215_000.0, 8, "white")
+
+
+@pytest.fixture()
+def product_phones_iphone15():
+    return Product("Iphone 15", "512GB, Gray space", 215_000.0, 8, "white")
+
+
+@pytest.fixture()
+def dict_category_phones():
+    return {"name": "Смартфоны",
+            "description": "Phones",
+            "products": [Product("Iphone 15", "512GB, Gray space", 210_000.0, 8, "white")]}
+
+
+@pytest.fixture()
+def dict_category_and_products():
+    return {"name": "Смартфоны",
+            "description": "Phones",
+            "products": [{"name": "Iphone 15",
+                          "description": "512GB, Gray space",
+                          "price": 210_000.0,
+                          "quantity": 8,
+                          "color": "white"}]}
+
+
+@pytest.fixture()
+def product_class_smartphone():
+    return Smartphone("Iphone 15", "512GB, Gray space", 215_000.0, 8, "white", "8GB", "15", "512GB")
+
+
+@pytest.fixture()
+def category_lawn_grass():
+    return Category("Lawns",
+                    "All types",
+                    [LawnGrass("Lawn", "Lawn Grass", 90_000, 8, "green", "Russia", "2 weeks")])
+
+
+@pytest.fixture()
+def product_class_lawn_grass():
+    return LawnGrass("Lawn", "Lawn Grass", 100_000, 8, "green", "Russia", "2 weeks")
+
+
+@pytest.fixture()
+def order1():
+    return Order("Iphone15", 200_000, 1)
